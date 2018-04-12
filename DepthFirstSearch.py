@@ -96,11 +96,17 @@ def DFSTraversal(G):
 def dfs(G,v):
     start = G.getVertex(v)
     start.setvisited()
-    print("Traversal: " + str(v) + " " + str(start.getdistance()))
-    for nbr in start.getConnections():
-        if not nbr.getvisited():
-            nbr.setdistance(start.getdistance()+1)
-            dfs(G,nbr.getVertexId())
+    vertqueue = []
+    vertqueue.append(start)
+    #print("Traversal: " + str(v) + " " + str(start.getdistance()))
+    while vertqueue:
+        currentVert = vertqueue.pop()
+        print("Traversal: " + str(currentVert.getVertexId()) + " " + str(currentVert.getdistance()))
+        for nbr in currentVert.getConnections():
+            if not nbr.getvisited():
+                nbr.setvisited()
+                nbr.setdistance(currentVert.getdistance()+1)
+                vertqueue.append(nbr)
 
 
 if __name__ == '__main__':
