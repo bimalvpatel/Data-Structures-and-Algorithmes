@@ -91,22 +91,19 @@ def DFSTraversal(G):
     for v in G:
         if not v.getvisited():
             v.setdistance(0)
+            v.setprevious(None)
             dfs(G,v.getVertexId())
 
 def dfs(G,v):
     start = G.getVertex(v)
     start.setvisited()
-    vertqueue = []
-    vertqueue.append(start)
-    #print("Traversal: " + str(v) + " " + str(start.getdistance()))
-    while vertqueue:
-        currentVert = vertqueue.pop()
-        print("Traversal: " + str(currentVert.getVertexId()) + " " + str(currentVert.getdistance()))
-        for nbr in currentVert.getConnections():
-            if not nbr.getvisited():
-                nbr.setvisited()
-                nbr.setdistance(currentVert.getdistance()+1)
-                vertqueue.append(nbr)
+    if start.getprevious() != None:
+        print("Traversal: " + str(v) + " " + str(start.getdistance()) + " " + str(start.getprevious().getVertexId()))
+    for nbr in start.getConnections():
+        if not nbr.getvisited():
+            nbr.setdistance(start.getdistance()+1)
+            nbr.setprevious(start)
+            dfs(G,nbr.getVertexId())
 
 
 if __name__ == '__main__':
@@ -118,13 +115,17 @@ if __name__ == '__main__':
     G.addVertex('e')
     G.addVertex('f')
     G.addEdge('a', 'b', 1)
-    G.addEdge('a', 'c', 1)
-    G.addEdge('b', 'd', 1)
+    G.addEdge('b', 'c', 1)
+    G.addEdge('a', 'd', 1)
     G.addEdge('b', 'e', 1)
-    G.addEdge('c', 'd', 1)
-    G.addEdge('c', 'e', 1)
+    G.addEdge('c', 'f', 1)
     G.addEdge('d', 'e', 1)
-    G.addEdge('e', 'a', 1)
+    G.addEdge('d', 'g', 1)
+    G.addEdge('e', 'f', 1)
+    G.addEdge('e', 'h', 1)
+    G.addEdge('f', 'i', 1)
+    G.addEdge('g', 'h', 1)
+    G.addEdge('h', 'i', 1)
     print 'Graph data:'
     print G.getEdges()
     DFSTraversal(G)
