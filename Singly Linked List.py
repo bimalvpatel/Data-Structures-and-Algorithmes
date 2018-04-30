@@ -62,14 +62,15 @@ class LinkedList:
                 current.setNext(node)
 
     def deleteAtBeg(self):
+        if self.head == None:
+            return "List is Empty"
         temp = self.head
-        if temp.hasNext():
-            self.head = self.head.getNext()
-        else:
-            self.head = None
+        self.head = self.head.getNext()
         return temp.getData()
 
     def deleteAtEnd(self):
+        if self.head == None:
+            return "List is Empty"
         current = self.head
         prev = None
         while current.hasNext():
