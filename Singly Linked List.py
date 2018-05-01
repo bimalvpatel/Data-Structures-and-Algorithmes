@@ -99,6 +99,7 @@ class LinkedList:
                     prev = current
                     current = current.getNext()
                 prev.setNext(current.getNext())
+                current.setNext(None)
                 return current.getData()
 
     def deleteAtVal(self,val):
