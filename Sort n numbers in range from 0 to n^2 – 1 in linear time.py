@@ -1,5 +1,6 @@
+import math
 def radixcount(A):
-    RADIX = len(A)
+    RADIX = int(math.sqrt(max(A)))+1
 
     tmp ,placement = -1,1
     for i in range(2):
