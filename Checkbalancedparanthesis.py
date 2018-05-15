@@ -59,12 +59,12 @@ def checkSymbolBalance(input):
             symbolstack.push(symbol)
         else:
             if symbolstack.isEmpty():
-                return 0
+                return False
             top = symbolstack.pop()
             if not matches(top,symbol):
-                return 0
-    return 1
+                return False
+    return symbolstack.isEmpty()
 
 if __name__ == "__main__":
-    print(checkSymbolBalance("([)]"))
+    print(checkSymbolBalance("([])"))
     print(checkSymbolBalance("{{([][])}()}"))
