@@ -57,7 +57,7 @@ def checkSymbolBalance(input):
     for symbol in input:
         if symbol in ["(","{","["]:
             symbolstack.push(symbol)
-        else:
+        elif symbol in [")","}","]"]:
             if symbolstack.isEmpty():
                 return False
             top = symbolstack.pop()
@@ -66,5 +66,5 @@ def checkSymbolBalance(input):
     return symbolstack.isEmpty()
 
 if __name__ == "__main__":
-    print(checkSymbolBalance("([])"))
-    print(checkSymbolBalance("{{([][])}()}"))
+    print(checkSymbolBalance("(A+B)-(C+D))"))
+    print(checkSymbolBalance("(A+B)-C-D"))
